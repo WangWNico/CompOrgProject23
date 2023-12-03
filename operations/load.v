@@ -10,7 +10,7 @@ module Load (
   reg [15:0] MBR;   // Memory Buffer Register
 
   always @ (posedge clk or posedge rst) begin
-    if (reset) begin
+    if (rst) begin
       // Reset values
       MAR <= 16'b0;
       MBR <= 16'b0;

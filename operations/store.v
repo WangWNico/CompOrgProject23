@@ -10,7 +10,7 @@ module store (
   reg [15:0] MBR; // memory buffer register
 
   always @(posedge clk or posedge rst) begin
-    if (reset) begin 
+    if (rst) begin 
       MAR <= 16'b0;
       MBR <= 16'b0;
     end else begin
