@@ -5,15 +5,15 @@ module halt (
   input rst,
   
   input wire halt_signal,
-  output reg halt_program
+  output reg program_halted
 );
   always @(posedge clk or posedge rst) begin
     if (rst) begin
       halt_signal <= 1'b0; // set to false
-      halt_program <= 1'b0
+      program_halted <= 1'b0
     end else begin
       if (halt_signal) begin
-        halt_program <= 1'b1;
+        program_halted <= 1'b1;
       end
     end
   end
