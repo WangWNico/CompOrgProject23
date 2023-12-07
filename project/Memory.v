@@ -8,24 +8,6 @@ module Memory (
   output wire [15:0] data_out
 );
 
-  // size in bytes
-  parameter WORD_SIZE = 2;
-  parameter MEM_SIZE = 64 * 1024;
-  parameter BLOCK_SIZE = 8 * 1024;
-
-  parameter NUM_BLOCKS = 8;
-
-  // size in bits
-  parameter CACHE_SIZE = 40000;
-
-  // Addrssing parameters TODO
-  // parameter BLOCK_OFFSET_BITS = $clog2(BLOCK_SIZE / WORD_SIZE);
-  // parameter BLOCK_INDEX_BITS = $clog2(MEM_SIZE / BLOCK_SIZE);
-  // parameter WORD_OFFSET_BITS = $clog2(BLOCK_SIZE / WORD_SIZE);
-
-  // memory array declaration
-  reg [70] memory[0:MEM_SIZE-1];
-
   // little-endian 
   assign data_out = {memory[address + 1], memory[address]};
 
