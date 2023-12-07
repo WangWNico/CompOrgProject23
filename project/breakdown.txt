@@ -1,0 +1,48 @@
+    Instruction Fetch (IF):
+        Purpose: Fetch the next instruction from memory.
+        Activities:
+            Increment the program counter (PC) to point to the next instruction.
+            Access memory at the updated PC to fetch the instruction.
+        Pipeline Stage:
+            IF stage is responsible for fetching the instruction.
+        Hazards:
+            Branch instructions can cause a branch delay slot, where the next instruction might be fetched even though the branch decision is not yet known.
+
+    Instruction Decode (ID):
+        Purpose: Decode the fetched instruction and read the necessary registers.
+        Activities:
+            Decode the opcode and determine the type of instruction.
+            Read source registers if needed.
+        Pipeline Stage:
+            ID stage is responsible for decoding the instruction.
+        Hazards:
+            Data hazards may occur if a subsequent instruction depends on the result of a previous one.
+
+    Execute (EX):
+        Purpose: Execute the operation specified by the instruction.
+        Activities:
+            Perform arithmetic or logic operations based on the decoded instruction.
+            Calculate memory addresses for load/store instructions.
+        Pipeline Stage:
+            EX stage is responsible for executing the instruction.
+        Hazards:
+            Control hazards, such as branch mispredictions, can cause pipeline stalls.
+
+    Memory (MEM):
+        Purpose: Perform memory operations (load and store).
+        Activities:
+            For load instructions, read data from memory.
+            For store instructions, write data to memory.
+        Pipeline Stage:
+            MEM stage is responsible for memory operations.
+        Hazards:
+            Cache misses or delays in accessing memory can introduce pipeline stalls.
+
+    Write Back (WB):
+        Purpose: Write the results of the executed instruction back to registers.
+        Activities:
+            Write the result of the instruction (e.g., the output of ALU operation) to the destination register.
+        Pipeline Stage:
+            WB stage is responsible for writing back the results.
+        Hazards:
+            Dependencies between instructions may cause delays if a result is needed by subsequent instructions.
