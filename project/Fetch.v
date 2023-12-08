@@ -1,31 +1,37 @@
 Instruction Fetch (IF):
 Purpose: Fetch the next instruction from memory.
 Activities:
-    Increment the program counter (PC) to point to the next instruction.
-    Access memory at the updated PC to fetch the instruction.
+  Increment the program counter (PC) to point to the next instruction.
+  Access memory at the updated PC to fetch the instruction.
 Pipeline Stage:
-    IF stage is responsible for fetching the instruction.
+  IF stage is responsible for fetching the instruction.
 Hazards:
-    Branch instructions can cause a branch delay slot, where the next instruction might be fetched even though the branch decision is not yet known.
+  Branch instructions can cause a branch delay slot, where the next instruction might be fetched even though the branch decision is not yet known.
 
 
-module Fetch (
+module Fetch 
+  # (
+      parameter MEM_SIZE = 64 * 1024,
+    )
+(
   input clk,
   input rst,
-
+  
   input [15:0] PC,
   input [7:0] MEMORY[0:MEM_SIZE-1],
-  input [15:0] MAR,
-  input [15:0] MBR
-  output [15:0] AC,
+  output [15:0] IR,
 );
 
   reg [15:0] PC_next <= PC + 1;
 
   always @(posedge clk or posedge rst) begin
     if (rst) begin
-      PC_next <= 16'b0;
-    end else if
+      IR <= 16'b0;
+      PC <= 16'b0;
+    end else begin
+      IR <= {Memory[PC+1], MEMORY[PC]}
+      PC <= PC + 1;
+    end
   end
 
 endmodule

@@ -1,3 +1,14 @@
+Memory (MEM):
+  Purpose: Perform memory operations (load and store).
+  Activities:
+    For load instructions, read data from memory.
+    For store instructions, write data to memory.
+  Pipeline Stage:
+    MEM stage is responsible for memory operations.
+  Hazards:
+    Cache misses or delays in accessing memory can introduce pipeline stalls.
+
+
 module Memory (
   input wire clk,
   input wire rst,

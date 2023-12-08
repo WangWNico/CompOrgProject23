@@ -1,0 +1,13 @@
+0000  halt
+0001  add
+0010  sub
+0011  load
+0100  store
+0101  clear
+0110  skip 
+0111  jump
+1000  and
+1001  or
+1010  not
+1011  jump link
+1100  return
