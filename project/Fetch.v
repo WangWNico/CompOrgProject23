@@ -1,13 +1,11 @@
-Instruction Fetch (IF):
-Purpose: Fetch the next instruction from memory.
-Activities:
-  Increment the program counter (PC) to point to the next instruction.
-  Access memory at the updated PC to fetch the instruction.
-Pipeline Stage:
-  IF stage is responsible for fetching the instruction.
-Hazards:
-  Branch instructions can cause a branch delay slot, where the next instruction might be fetched even though the branch decision is not yet known.
-
+// Instruction Fetch (IF):
+// Purpose: Fetch the next instruction from memory.
+// Activities:
+//   Increment the program counter (PC) to point to the next instruction.
+//   Access memory at the updated PC to fetch the instruction.
+// Pipeline Stage:
+//   IF stage is responsible for fetching the instruction.
+`timescale 1ns / 25ps
 
 module Fetch 
   # (
@@ -16,6 +14,7 @@ module Fetch
 (
   input clk,
   input rst,
+  input halt_program,
   
   input [15:0] PC,
   input [7:0] MEMORY[0:MEM_SIZE-1],
@@ -28,7 +27,10 @@ module Fetch
     if (rst) begin
       IR <= 16'b0;
       PC <= 16'b0;
+    end else if (halt_program) begin
+      ;
     end else begin
+      #25;
       IR <= {Memory[PC+1], MEMORY[PC]}
       PC <= PC + 1;
     end
