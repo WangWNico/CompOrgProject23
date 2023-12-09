@@ -4,7 +4,7 @@
 
 `include "CPU.v"
 
-module Testbench;
+module Fibonacci;
 
   parameter MEM_SIZE = 64 * 1024;
 
