@@ -6,15 +6,15 @@
 //   Pipeline Stage:
 //     E&M stage is responsible for memory operations.
 
-`timescale 1ns / 25ps
+`timescale 1ns / 1ps
 
 module Execute_Memory 
   # (
       parameter MEM_SIZE = 64 * 1024,
     )
 (
-  input wire clk,
-  input wire rst,
+  input clk,
+  input rst,
   input halt_program,
 
   input [7:0] OP_code,
@@ -24,7 +24,7 @@ module Execute_Memory
   input [15:0] MAR,
   input [7:0] MEMORY[0:MEM_SIZE-1],
   output [15:0] PC,
-  output wire [15:0] data_out
+  output [15:0] data_out
 );
 
   always @(posedge clk or posedge rst) begin

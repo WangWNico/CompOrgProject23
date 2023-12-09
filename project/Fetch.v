@@ -5,7 +5,7 @@
 //   Access memory at the updated PC to fetch the instruction.
 // Pipeline Stage:
 //   IF stage is responsible for fetching the instruction.
-`timescale 1ns / 25ps
+`timescale 1ns / 1ps
 
 module Fetch 
   # (

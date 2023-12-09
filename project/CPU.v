@@ -1,4 +1,4 @@
-`timescale 1ns / 25ps
+`timescale 1ns / 1ps
 
 `include "Fetch.v"
 `include "Decoder.v"
@@ -19,6 +19,11 @@ module CPU (
 
   // size in bits
   parameter CACHE_SIZE = 40000;
+  
+  // Addressing parameters
+  parameter BLOCK_OFFSET_BITS = $clog2(BLOCK_SIZE / WORD_SIZE); // Block offset bits
+  parameter BLOCK_INDEX_BITS = $clog2(MEM_SIZE / BLOCK_SIZE);   // Block index bits
+  parameter WORD_OFFSET_BITS = $clog2(BLOCK_SIZE / WORD_SIZE);  // Word offset bits
 
   // REGISTERS
   reg [15:0] AC, MAR, MBR, IR, PC;
@@ -37,7 +42,7 @@ module CPU (
       halt_program <= 1'b0;
     end
   end
-  
+
   // instruction fetch
   Fetch CPU_fetch (
     .clk(clk),

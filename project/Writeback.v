@@ -7,7 +7,7 @@
 //   Hazards:
 //       Dependencies between instructions may cause delays if a result is needed by subsequent instructions.
 
-`timescale 1ns / 25ps
+`timescale 1ns / 1ps
 
 module Writeback (
   input wire clk,

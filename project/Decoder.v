@@ -8,7 +8,7 @@
 //     ID stage is responsible for decoding the instruction.
 //   Hazards:
 
-`timescale 1ns / 25ps
+`timescale 1ns / 1ps
 
 module Decoder (
   input clk,
