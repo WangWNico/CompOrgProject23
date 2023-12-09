@@ -16,8 +16,8 @@ module Decoder (
   input halt_program,
 
   input [15:0] IR,
-  output [3:0] OP_code,
-  output [11:0] value,
+  output [7:0] OP_code,
+  output [7:0] value,
 );
 
   always @(posedge clk or posedge rst) begin
@@ -28,8 +28,8 @@ module Decoder (
       ;
     end else begin
       #25;
-      OP_code = IR[15:12];
-      value = IR[11:0];
+      OP_code = IR[15:8];
+      value = IR[7:0];
     end
   end
 endmodule
