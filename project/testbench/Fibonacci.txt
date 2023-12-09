@@ -1,0 +1,24 @@
+Address (hex),       Value,        Code
+00,		0324,  		Loop, Load Sum	//(load is 0011, Sum is 124, 0011 = 3, opcode then address)
+02,		0120,		Add A
+04,		0424,		Store Sum
+06,		0324,		Load Sum
+08,		0222,		Add B
+0A,		0424,		Store Sum 	// Sum = A+B
+0C,		0322,		Load B
+0E,		0420,		Store A		// A = B
+10,		0324,		Load Sum
+12, 	0422,		Store B		// B = Sum
+14,		0326,		Load Ctr
+16,	  0128,		Add Neg1
+18,		0426,		Store Ctr	// ctr = ctr -1
+1A,		0602,		Skip 2	// 2: skips if AC(ctr) == 0
+1C,		0700,		Jump Loop
+1E,		0000,		Halt
+
+20,		A,		dec	0
+22,		B, 		dec	1
+24,		Sum,	dec	0	
+26,		Ctr,	hex	B   //11 in hex
+28,		Neg1, dec -1
+//fibonacci sequence, start with 0 and 1, each new number is sum of 2 previous, go to 11th member

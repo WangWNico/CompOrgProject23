@@ -26,12 +26,12 @@ module Fetch
   always @(posedge clk or posedge rst) begin
     if (rst) begin
       IR <= 16'b0;
-      PC <= 16'b0;
+      PC <= 16'b1100100;
     end else if (halt_program) begin
       ;
     end else begin
       #25;
-      IR <= {Memory[PC+1], MEMORY[PC]}
+      IR <= {MEMORY[PC+1], MEMORY[PC]}
       PC <= PC + 1;
     end
   end
