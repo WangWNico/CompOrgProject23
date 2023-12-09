@@ -5,35 +5,34 @@
 `include "Execute_Memory.v"
 `include "Writeback.v"
 
-module CPU (
+module CPU 
+  # (
+    // size in bytes
+    parameter WORD_SIZE = 2;
+    parameter NUM_BLOCKS = 8;
+    parameter BLOCK_SIZE = NUM_BLOCKS * 1024;
+    parameter MEM_SIZE = 64 * 1024
+
+    // size in bits
+    parameter CACHE_SIZE = 40000;
+
+    // Addressing parameters
+    parameter BLOCK_OFFSET_BITS = $clog2(BLOCK_SIZE / WORD_SIZE); // Block offset bits
+    parameter BLOCK_INDEX_BITS = $clog2(MEM_SIZE / BLOCK_SIZE);   // Block index bits
+    parameter WORD_OFFSET_BITS = $clog2(BLOCK_SIZE / WORD_SIZE);  // Word offset bits
+
+  )
+(
   input wire clk,
   input wire rst,
+  output [7:0] MEMORY[0:MEM_SIZE-1],
 );
-
-  // CONSTANTS
-  // size in bytes
-  parameter WORD_SIZE = 2;
-  parameter MEM_SIZE = 64 * 1024;
-  parameter NUM_BLOCKS = 8;
-  parameter BLOCK_SIZE = NUM_BLOCKS * 1024;
-
-  // size in bits
-  parameter CACHE_SIZE = 40000;
-  
-  // Addressing parameters
-  parameter BLOCK_OFFSET_BITS = $clog2(BLOCK_SIZE / WORD_SIZE); // Block offset bits
-  parameter BLOCK_INDEX_BITS = $clog2(MEM_SIZE / BLOCK_SIZE);   // Block index bits
-  parameter WORD_OFFSET_BITS = $clog2(BLOCK_SIZE / WORD_SIZE);  // Word offset bits
 
   // REGISTERS
   reg [15:0] AC, MAR, MBR, IR, PC;
   reg [7:0] OP_code;
   reg [7:0] value;
   reg halt_program;
-
-
-  // MEMORY DECLARATION
-  reg [7:0] MEMORY[0:MEM_SIZE-1];
   reg [15:0] data_out;
 
   always @(*) begin
